@@ -18,9 +18,7 @@ The code references [excellent Github code in python](https://github.com/ppoffic
 
 ## Examples:
 
-![](https://raw.githubusercontent.com/learner-lu/picbed/master/0R7F0VSP4%606C4YPJKDOTHGV.png)
-
-![](https://raw.githubusercontent.com/learner-lu/picbed/master/123.png)
+![result](https://raw.githubusercontent.com/learner-lu/picbed/master/result.png)
 
 
 ## Use:

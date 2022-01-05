@@ -7,18 +7,18 @@ from utils import random_init,calculate_distance,load_example
 def default_argument_parser():
     parser = argparse.ArgumentParser(description="Ant Colony Algorithm")
     parser.add_argument("--test",nargs="?")
-    parser.add_argument('--ant', default=10)
-    parser.add_argument('--points', default=50)
+    parser.add_argument('--ant', default=3)
+    parser.add_argument('--points', default=5)
     parser.add_argument('--generation', default=100) #[]
     parser.add_argument('--alpha', default=2.0)     #[1,4]
     parser.add_argument('--beta', default=5.0)     #[0,5]
     parser.add_argument('--rho', default=0.5)       #[0.2,0.5]
-    parser.add_argument('--q', default=1000)
-    parser.add_argument('--strategy', default=1) 
+    parser.add_argument('--q', default=10)
+    parser.add_argument('--strategy', default=2) 
     parser.add_argument('--min_x', default=0) 
-    parser.add_argument('--max_x', default=1000) 
-    parser.add_argument('--min_y', default=2) 
-    parser.add_argument('--max_y', default=1000)    
+    parser.add_argument('--max_x', default=10) 
+    parser.add_argument('--min_y', default=0) 
+    parser.add_argument('--max_y', default=10)    
     '''
     0:  ant-quality system
         In the ant density model, when each ant passes through the cities i and j, 

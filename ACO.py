@@ -1,7 +1,8 @@
 
 
-from utils import draw_picture, get_next_pos, init_pos
+from utils import draw_picture, get_next_pos, init_pos,save_best_result
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 class ACO(object):
@@ -62,23 +63,32 @@ class ACO(object):
             for i in range(self.ant_count):
                 self.pheromone_content[ant_path[i][0]][ant_path[i][1]]+=self.Q
                 self.pheromone_content[ant_path[i][1]][ant_path[i][0]]+=self.Q
+                if len(self.memory_vector[0])==self.rank:
+                    self.pheromone_content[self.memory_vector[i][-1]][self.memory_vector[i][0]]+=self.Q
+                    self.pheromone_content[self.memory_vector[i][0]][self.memory_vector[i][-1]]+=self.Q
         elif self.update_strategy == 1:
             for i in range(self.ant_count):
                 self.pheromone_content[ant_path[i][0]][ant_path[i][1]]+=(self.Q/self.distance[ant_path[i][0]][ant_path[i][1]])
                 self.pheromone_content[ant_path[i][1]][ant_path[i][0]]+=(self.Q/self.distance[ant_path[i][0]][ant_path[i][1]])
+                if len(self.memory_vector[0])==self.rank:
+                    self.pheromone_content[self.memory_vector[i][-1]][self.memory_vector[i][0]]+=self.Q/self.distance[self.memory_vector[i][0]][self.memory_vector[i][-1]]
+                    self.pheromone_content[self.memory_vector[i][0]][self.memory_vector[i][-1]]+=self.Q/self.distance[self.memory_vector[i][0]][self.memory_vector[i][-1]]
         elif self.update_strategy == 2:
             if len(self.memory_vector[0]) == self.rank:
-                total_path = []
+                total_cost = []
                 for i in range(self.ant_count):
                     cost = 0
                     for j in range(1,self.rank):
                         cost+=self.distance[self.memory_vector[i][j-1]][self.memory_vector[i][j]]
-                    total_path.append(cost)
+                    cost+=self.distance[self.memory_vector[i][0]][self.memory_vector[i][-1]]
+                    total_cost.append(cost)
                 for i in range(self.ant_count):
-                    delta = self.Q/total_path[i]
+                    delta = self.Q/total_cost[i]
                     for j in range(1,self.rank):
                         self.pheromone_content[self.memory_vector[i][j-1]][self.memory_vector[i][j]]+=delta
                         self.pheromone_content[self.memory_vector[i][j]][self.memory_vector[i][j-1]]+=delta
+                    self.pheromone_content[self.memory_vector[i][0]][self.memory_vector[i][-1]]+=delta
+                    self.pheromone_content[self.memory_vector[i][-1]][self.memory_vector[i][0]]+=delta
             else:
                 # have not finished one cycle
                 pass
@@ -95,6 +105,8 @@ class ACO(object):
 
     def run(self):
         plt.ion()
+        total_best_cost = np.inf
+        total_best_path = []
         for iteration in range(self.generations):
             print(f'-----start iteration {iteration+1} of ACO-----')
             self.initialization()
@@ -110,11 +122,26 @@ class ACO(object):
             self.update_pheromone()
             plt.cla()
             plt.title("ant colony algorithm")
-            draw_picture(self.points,self.distance,self.memory_vector,iteration)
+            best_cost,best_path = draw_picture(self.points,self.distance,self.memory_vector,iteration)
+            #print(f'best path cost = {best_cost}')
+            if best_cost<total_best_cost:
+                total_best_cost = best_cost
+                total_best_path = best_path
             plt.pause(0.01)
 
+        save_best_result(total_best_cost,total_best_path,self.points)
         plt.ioff()
         plt.show()
+        
+
+        
+        
+        
+        
+
+        
+
+        
 
 
 

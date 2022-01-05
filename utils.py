@@ -2,6 +2,7 @@
 import random
 import math
 import matplotlib.pyplot as plt
+import numpy as np
 
 def random_init(points_num,min_x, max_x, min_y, max_y):
     points = []
@@ -75,16 +76,16 @@ def draw_picture(points,distance,path,iteration):
         y.append(points[i][1])
     plt.scatter(x,y)
     
-    min_cost = 0
+    min_cost = np.inf
+    best_path = []
     for i in range(ant_number):
         temp_cost = 0
         for j in range(1,rank):
-            if i==0:
-                min_cost+=distance[path[i][j-1]][path[i][j]]
-            else:
-                temp_cost+=distance[path[i][j-1]][path[i][j]]
-        if i!=0:
-            min_cost = round(min(min_cost,temp_cost),2)
+            temp_cost+=distance[path[i][j-1]][path[i][j]]
+        temp_cost+=distance[path[i][0]][path[i][-1]]
+        if temp_cost<min_cost:
+            min_cost = temp_cost
+            best_path = path[i]
         
     for i in range(ant_number):
         for j in range(rank):
@@ -92,4 +93,27 @@ def draw_picture(points,distance,path,iteration):
             y[j] = points[path[i][j]][1]
         plt.plot(x,y)
 
-    plt.text(0, 0, f'iteration:{iteration} min_cost = {min_cost}', family='fantasy', fontsize=12,style='italic',color='mediumvioletred')
+    plt.text(0, 0, f'iteration:{iteration} min_cost = {round(min_cost,2)}', family='fantasy', fontsize=12,style='italic',color='mediumvioletred')
+    return round(min_cost,2),best_path
+
+
+def save_best_result(cost,path,points):
+    for i in range(1,len(path)):
+        x1 = points[path[i-1]][0]
+        y1 = points[path[i-1]][1]
+        x2 = points[path[i]][0]
+        y2 = points[path[i]][1]
+        plt.arrow(x1, y1, x2 - x1, y2 - y1, width = 0.05,color='r', length_includes_head=True)
+    plt.arrow(x2,y2,points[path[0]][0]-x2,points[path[0]][1]-y2, width = 0.05,color='r', length_includes_head=True)
+    #plt.text(0, 0, f'min_cost = {cost}')
+    plt.savefig("result.png")
+    plt.close()
+
+    print(f'best path = {show_path(path)}')
+
+def show_path(path):
+    route = str(path[0])
+    for i in range(1,len(path)):
+        route = route+" -> "+str(path[i])
+    route = route+"->"+str(path[0])
+    return route

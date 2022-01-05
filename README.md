@@ -2,21 +2,19 @@
 
 ## Introduction:
 This is the python implementation of ant colony algorithm.
+Dynamic graphs are used to show the dynamic change when running the algorithm
 
 The code references [excellent Github code in python](https://github.com/ppoffice/ant-colony-tsp) about some function arguments and names and values, especailly thanks for his contribution, offers me great help.
-
-From realizing the ant colony algorithm by myself, I also learn better about it.Actually it's a nice idea, and it could be used in many similar problems.
-
-But it still confuse me that it seems not easy to convergent as I know.
 
 ### About ant colony:
 - [introduction video](https://www.bilibili.com/video/BV17V411a7yf?from=search&seid=12790218810323775687&spm_id_from=333.337.0.0)
 - [introduction video in matlab realization without code](https://www.bilibili.com/video/BV1ZA411v7pC?from=search&seid=12790218810323775687&spm_id_from=333.337.0.0)
-
+- [professional blog](https://www.cnblogs.com/bokeyuancj/p/11798635.html)
 
 ## Requirements:
 - python
 - matplotlib
+- numpy
 
 ## Examples:
 
@@ -25,15 +23,13 @@ But it still confuse me that it seems not easy to convergent as I know.
 ![](https://raw.githubusercontent.com/learner-lu/picbed/master/123.png)
 
 
-
-
 ## Use:
-- each run will create a random location for each country
+- easy run as
   ```python
   python main.py
   ```
 - use examples in `./data/example-x.txt` as\
-  change x into number 1~5
+  change x into number 1~6, using the given data
   ```python
   python main.py --test x
   ```
@@ -45,12 +41,25 @@ But it still confuse me that it seems not easy to convergent as I know.
   - `beta`:relative importance of heuristic information
   - `rho`:pheromone residual coefficient
   - `q`:pheromone intensity
-  - `strategy`:pheromone update strategy. 0 - ant-cycle, 1 - ant-quality, 2 - ant-density
+  - `strategy`:pheromone update strategy. \
+    see more details in code annotation
+    - 0 - ant-cycle
+    - 1 - ant-quality
+    - 2 - ant-density
   - `min_x`,`max_x`,`min_y`,`max_y` the range of values of points(x,y)
   ```python
   python main.py -ant 20 -points 50 -rho 0.2 -max_x 1000 -max_y 1000
   ```
   **pay attention that changing the arguments may imporve the algorithm in some cases, or behave worse**
 
--  each run will create a record file `./temp.txt`, if you want to use the data again by different strategies,\
-  you should move it to `./data/` and rename it as `./data/example-x.txt` and then use `--test x`.
+## Attention:
+  each run will create a record file `./temp.txt`, if you want to use the data again by different strategies,\
+  you should move it to `./data/` and rename it as `./data/example-x.txt` and then use `--test x`.\
+  The result will be saved as `./result.png` for each run.
+
+  As the [blog](https://www.cnblogs.com/bokeyuancj/p/11798635.html) said, ant colony algorithm is barely useful in solving small-scale TSP problems, and the optimal solution can be found in a little time. However, if the problem scale is large, the performance of ant colony algorithm will be very low or even stuck. So it can be improved, such as elite ant system.
+
+  **This code is just a simple realization of ant colony algorithm, when I run the code myself I also find some inappropriate simulation results and strange simulations.**
+
+  If you find any bug or suggestions to improve, please leave your advice in issue.
+

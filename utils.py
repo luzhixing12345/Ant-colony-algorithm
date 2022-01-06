@@ -77,7 +77,6 @@ def draw_picture(points,distance,path,iteration):
     plt.scatter(x,y)
     
     min_cost = np.inf
-    best_path = []
     for i in range(ant_number):
         temp_cost = 0
         for j in range(1,rank):

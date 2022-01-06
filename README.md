@@ -6,6 +6,8 @@ Dynamic graphs are used to show the dynamic change when running the algorithm
 
 The code references [excellent Github code in python](https://github.com/ppoffice/ant-colony-tsp) about some function arguments and names and values, especailly thanks for his contribution, offers me great help.
 
+[my bilibili video](https://www.bilibili.com/video/BV19L4y1t7xY?spm_id_from=333.999.0.0)
+
 ### About ant colony:
 - [introduction video](https://www.bilibili.com/video/BV17V411a7yf?from=search&seid=12790218810323775687&spm_id_from=333.337.0.0)
 - [introduction video in matlab realization without code](https://www.bilibili.com/video/BV1ZA411v7pC?from=search&seid=12790218810323775687&spm_id_from=333.337.0.0)
@@ -46,7 +48,7 @@ The code references [excellent Github code in python](https://github.com/ppoffic
     - 2 - ant-density
   - `min_x`,`max_x`,`min_y`,`max_y` the range of values of points(x,y)
   ```python
-  python main.py -ant 20 -points 50 -rho 0.2 -max_x 1000 -max_y 1000
+  python main.py --ant 20 --points 50 --rho 0.2 --max_x 1000 --max_y 1000
   ```
   **pay attention that changing the arguments may imporve the algorithm in some cases, or behave worse**
 
@@ -54,6 +56,8 @@ The code references [excellent Github code in python](https://github.com/ppoffic
   each run will create a record file `./temp.txt`, if you want to use the data again by different strategies,\
   you should move it to `./data/` and rename it as `./data/example-x.txt` and then use `--test x`.\
   The result will be saved as `./result.png` for each run.
+
+  **If the final picture seems mad or has more than one line, it means that after generations the final path cost is not the min cost, while in iterations there comes a good cost but the ACO doesn't choose it! So you need to change your arguments choice**
 
   As the [blog](https://www.cnblogs.com/bokeyuancj/p/11798635.html) said, ant colony algorithm is barely useful in solving small-scale TSP problems, and the optimal solution can be found in a little time. However, if the problem scale is large, the performance of ant colony algorithm will be very low or even stuck. So it can be improved, such as elite ant system.
 

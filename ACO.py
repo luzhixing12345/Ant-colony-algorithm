@@ -105,8 +105,6 @@ class ACO(object):
 
     def run(self):
         plt.ion()
-        total_best_cost = np.inf
-        total_best_path = []
         for iteration in range(self.generations):
             print(f'-----start iteration {iteration+1} of ACO-----')
             self.initialization()
@@ -122,14 +120,11 @@ class ACO(object):
             self.update_pheromone()
             plt.cla()
             plt.title("ant colony algorithm")
-            best_cost,best_path = draw_picture(self.points,self.distance,self.memory_vector,iteration)
+            cost,path = draw_picture(self.points,self.distance,self.memory_vector,iteration)
             #print(f'best path cost = {best_cost}')
-            if best_cost<total_best_cost:
-                total_best_cost = best_cost
-                total_best_path = best_path
             plt.pause(0.01)
 
-        save_best_result(total_best_cost,total_best_path,self.points)
+        save_best_result(cost,path,self.points)
         plt.ioff()
         plt.show()
         

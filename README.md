@@ -15,8 +15,8 @@ The code references [excellent Github code in python](https://github.com/ppoffic
 
 ## Requirements:
 - python
-- matplotlib
-- numpy
+- matplotlib `pip install matplotlib`
+- numpy `pip install numpy`
 
 ## Examples:
 
@@ -57,7 +57,7 @@ The code references [excellent Github code in python](https://github.com/ppoffic
   you should move it to `./data/` and rename it as `./data/example-x.txt` and then use `--test x`.\
   The result will be saved as `./result.png` for each run.
 
-  **If the final picture seems mad or has more than one line, it means that after generations the final path cost is not the min cost, while in iterations there comes a good cost but the ACO doesn't choose it! So you need to change your arguments choice**
+  **If the final picture seems mad or has more than one line, that means it does not converge to a local optimal solution at the end of the iteration. So you need to change your arguments choice, such as increase `rho` or decrease `q` and so on**
 
   As the [blog](https://www.cnblogs.com/bokeyuancj/p/11798635.html) said, ant colony algorithm is barely useful in solving small-scale TSP problems, and the optimal solution can be found in a little time. However, if the problem scale is large, the performance of ant colony algorithm will be very low or even stuck. So it can be improved, such as elite ant system.
 

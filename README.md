@@ -6,7 +6,7 @@ Dynamic graphs are used to show the dynamic change when running the algorithm
 
 The code references [excellent Github code in python](https://github.com/ppoffice/ant-colony-tsp) about some function arguments and names and values, especailly thanks for his contribution, offers me great help.
 
-[my bilibili video](https://www.bilibili.com/video/BV19L4y1t7xY?spm_id_from=333.999.0.0)
+[my bilibili video](https://www.bilibili.com/video/BV19L4y1t7xY?spm_id_from=333.999.0.0)<br>
 [代码讲解视频（2022.3.8新增)](https://github.com/learner-lu/Ant-colony-algorithm/releases/download/v0.0.1/2022-03-07.19-46-59.mkv)
 
 ### About ant colony:

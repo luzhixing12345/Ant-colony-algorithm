@@ -35,9 +35,10 @@ def calculate_distance(points):
 def get_next_pos(possibility):
     #print(possibility)
     n = sum(possibility)
-
+    
     for i in range(len(possibility)):
         possibility[i]/=n
+    
     n = sum(possibility)
     r = random.uniform(0,n)
     pos = 0

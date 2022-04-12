@@ -22,11 +22,11 @@ class ACO(object):
         self.rho = rho
         self.beta = beta
         self.alpha = alpha
-        self.ant_count = ant_count
+        self.ant_count = ant_count  # x = 10
         self.generations = generations
         self.update_strategy = strategy
-        self.points = points
-        self.distance = distance
+        self.points = points  # n = 30
+        self.distance = distance 
         self.rank = len(distance)   
         self.eta = [[0 if i == j else 1 / distance[i][j] for j in range(self.rank)] for i in
                     range(self.rank)]
@@ -74,6 +74,7 @@ class ACO(object):
                     self.pheromone_content[self.memory_vector[i][-1]][self.memory_vector[i][0]]+=self.Q/self.distance[self.memory_vector[i][0]][self.memory_vector[i][-1]]
                     self.pheromone_content[self.memory_vector[i][0]][self.memory_vector[i][-1]]+=self.Q/self.distance[self.memory_vector[i][0]][self.memory_vector[i][-1]]
         elif self.update_strategy == 2:
+            # finish one cycle
             if len(self.memory_vector[0]) == self.rank:
                 total_cost = []
                 for i in range(self.ant_count):

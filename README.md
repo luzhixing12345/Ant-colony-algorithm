@@ -22,6 +22,10 @@ The code references [excellent Github code in python](https://github.com/ppoffic
 - matplotlib `pip install matplotlib`
 - numpy `pip install numpy`
 
+```bash
+pip install -r requirements.txt
+```
+
 ## Examples
 
 ![result](https://raw.githubusercontent.com/learner-lu/picbed/master/result.png)
@@ -30,20 +34,24 @@ The code references [excellent Github code in python](https://github.com/ppoffic
 
 ## Use
 
-- easy run as
+- easy run
 
   ```python
   python main.py
   ```
 
-- use examples in `./data/example-x.txt` as\
-  change x into number 1~6, using the given data
+- use your own data
+
+  There are some examples under `./data/`, use `--test 5` to load data from `example-5.txt`.
+
+  If you want to test your own data, please create a new example file and use `--test x` to run
 
   ```python
   python main.py --test x
   ```
 
 - change arguments of ant colont algorithm
+
   - `ant`: the number of ants
   - `points`: the number of points
   - `generation`:the number of iteration
@@ -51,16 +59,19 @@ The code references [excellent Github code in python](https://github.com/ppoffic
   - `beta`:relative importance of heuristic information
   - `rho`:pheromone residual coefficient
   - `q`:pheromone intensity
-  - `strategy`:pheromone update strategy. \
+  - `strategy`:pheromone update strategy.
+  
     see more details in code annotation
+
     - 0 - ant-cycle
     - 1 - ant-quality
     - 2 - ant-density
+  
   - `min_x`,`max_x`,`min_y`,`max_y` the range of values of points(x,y)
 
-  ```python
-  python main.py --ant 20 --points 50 --rho 0.2 --max_x 1000 --max_y 1000
-  ```
+    ```python
+    python main.py --ant 20 --points 50 --rho 0.2 --max_x 1000 --max_y 1000
+    ```
 
   **pay attention that changing the arguments may imporve the algorithm in some cases, or behave worse**
 

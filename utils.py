@@ -55,9 +55,8 @@ def init_pos(rank):
     pos = random.randint(0,rank-1)
     return pos
 
-def load_example(number):
-    url = f'./data/example-{number}.txt'
-    file = open(url,'r')
+def load_example(text_name):
+    file = open(text_name,'r')
     content = file.readlines()
     points = []
     for data in content:

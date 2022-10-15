@@ -96,7 +96,8 @@ def draw_picture(points,distance,path,iteration):
     return round(min_cost,2),best_path
 
 
-def save_best_result(cost,path,points):
+def save_best_result(path,points,seed):
+    
     for i in range(1,len(path)):
         x1 = points[path[i-1]][0]
         y1 = points[path[i-1]][1]
@@ -104,15 +105,23 @@ def save_best_result(cost,path,points):
         y2 = points[path[i]][1]
         plt.arrow(x1, y1, x2 - x1, y2 - y1, width = 0.05,color='r', length_includes_head=True)
     plt.arrow(x2,y2,points[path[0]][0]-x2,points[path[0]][1]-y2, width = 0.05,color='r', length_includes_head=True)
-    #plt.text(0, 0, f'min_cost = {cost}')
     plt.savefig("result.png")
     plt.close()
 
-    print(f'best path = {show_path(path)}')
+    if seed == 0:
+        print("[Best Path] : ")
+    else:
+        print(f"[Best Path](random seed [{seed}])")
+    print(show_path(path))
+    print("-"*50)
+    print("Last result picture was saved in [result.png]")
+    print(f"If you want to get this result again please add '-s {seed}'")
+    print("-"*50)
+    
 
 def show_path(path):
     route = str(path[0])
     for i in range(1,len(path)):
         route = route+" -> "+str(path[i])
-    route = route+"->"+str(path[0])
+    route = route+" -> "+str(path[0])
     return route

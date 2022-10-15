@@ -42,7 +42,7 @@ pip install -r requirements.txt
 
   ```python
   python main.py --test {FILENAME}
-  # python main.py --test data.txt
+  # python main.py --test ./data/example-1.txt
   ```
 
   **注意**您的数据应该是二维 {X,Y} 如下所示
@@ -58,6 +58,17 @@ pip install -r requirements.txt
    ```
 
    您可以在 [data](data) 中找到一些测试文件示例
+
+- 复现实验结果 : 使用随机数种子
+
+  代码运行结束之后会得到本次运行使用的随机数种子,如果您想复现实现结果请添加使用 `-s {SEED}` 重新运行
+
+  ```bash
+  python main.py -s {SEED}
+  #python main.py --test ./data/example-1.txt -s 9438
+  ```
+
+  > 请不要使用种子 `0` !
 
 ## Arguments
 

@@ -1,5 +1,6 @@
 
 
+from time import sleep
 from utils import draw_picture, get_next_pos, init_pos,save_best_result
 import matplotlib.pyplot as plt
 import numpy as np
@@ -105,6 +106,9 @@ class ACO(object):
             self.memory_vector[i].append(ant_path[i][1])
 
     def run(self):
+        
+        self.cost = 0
+        self.path = []
         plt.ion()
         for iteration in range(self.generations):
             print(f'-----start iteration {iteration+1} of ACO-----')
@@ -121,11 +125,12 @@ class ACO(object):
             self.update_pheromone()
             plt.cla()
             plt.title("ant colony algorithm")
-            cost,path = draw_picture(self.points,self.distance,self.memory_vector,iteration)
-            #print(f'best path cost = {best_cost}')
+            self.cost,self.path = draw_picture(self.points,self.distance,self.memory_vector,iteration)
             plt.pause(0.01)
-
-        save_best_result(cost,path,self.points)
+        
+    def save(self,seed):
+        
+        save_best_result(self.path,self.points,seed)
         plt.ioff()
         plt.show()
         

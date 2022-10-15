@@ -8,7 +8,7 @@ from utils import random_init,calculate_distance,load_example
 def default_argument_parser():
     parser = argparse.ArgumentParser(description="Ant Colony Algorithm")
     parser.add_argument("--test",nargs="?")
-    parser.add_argument('--ant', default=10,type=int)
+    parser.add_argument('--ant', default=5,type=int)
     parser.add_argument('--points', default=50,type=int)
     parser.add_argument('--generation', default=100,type=int) #[]
     parser.add_argument('--alpha', default=2.0,type=float)     #[1,4]
@@ -20,7 +20,7 @@ def default_argument_parser():
     parser.add_argument('--max_x', default=100,type=int) 
     parser.add_argument('--min_y', default=0,type=int) 
     parser.add_argument('--max_y', default=100,type=int)  
-    parser.add_argument('-s','--seed',default=0,type=int)  
+    parser.add_argument('-s','--seed',type=int)  
     '''
     0:  ant-quality system
         In the ant density model, when each ant passes through the cities i and j, 
@@ -43,7 +43,7 @@ def default_argument_parser():
 
 def main():
     args = default_argument_parser().parse_args()
-    if(args.seed == 0):
+    if(args.seed == None):
         seed = random.randint(1, 10000)
         random.seed(seed)
         print("no random see found")

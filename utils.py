@@ -18,6 +18,7 @@ def random_init(points_num,min_x, max_x, min_y, max_y):
     for i in range(len(points)):
         file.write(f'{points[i][0]} {points[i][1]}\n')
     file.close()
+    print("Data runningtime was saved in file [temp.txt], rename it if you want to use it again")
     return points
 
 def dis(point1,point2):
@@ -107,16 +108,14 @@ def save_best_result(path,points,seed):
     plt.arrow(x2,y2,points[path[0]][0]-x2,points[path[0]][1]-y2, width = 0.05,color='r', length_includes_head=True)
     plt.savefig("result.png")
     plt.close()
-
-    if seed == 0:
-        print("[Best Path] : ")
-    else:
-        print(f"[Best Path](random seed [{seed}])")
-    print(show_path(path))
+    print('\n')
     print("-"*50)
+    print(f"[Best Path](random seed [{seed}])")
+    print(show_path(path))
     print("Last result picture was saved in [result.png]")
     print(f"If you want to get this result again please add '-s {seed}'")
     print("-"*50)
+    print('\n')
     
 
 def show_path(path):

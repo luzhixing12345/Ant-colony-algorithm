@@ -1,9 +1,8 @@
 
 
-from time import sleep
 from utils import draw_picture, get_next_pos, init_pos,save_best_result
 import matplotlib.pyplot as plt
-import numpy as np
+import tqdm
 
 
 class ACO(object):
@@ -110,8 +109,8 @@ class ACO(object):
         self.cost = 0
         self.path = []
         plt.ion()
-        for iteration in range(self.generations):
-            print(f'-----start iteration {iteration+1} of ACO-----')
+        for iteration in tqdm.tqdm(range(self.generations),desc='Processing'):
+            # print(f'-----start iteration {iteration+1} of ACO-----')
             self.initialization()
             for steps in range(self.rank-1):
                 # in a new iteration, each ant choose a path, from pos to next_pos

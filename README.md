@@ -68,8 +68,6 @@ pip install -r requirements.txt
   #python main.py --test ./data/example-1.txt -s 9438
   ```
 
-  > 请不要使用种子 `0` !
-
 ## Arguments
 
 该算法中有许多相关参数,您可以使用默认参数运行或根据需要更改它。**但是在某些情况下更改参数可能会改进算法,或者表现更差**
